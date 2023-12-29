@@ -1,0 +1,16 @@
+.modal-content span {
+  color: var(--color-primary-4);
+}
+
+#modal-price {
+  padding-left: 24px;
+}
+
+::ng-deep .ant-skeleton-content {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .ant-skeleton-title {
+  width: 100% !important;
+}

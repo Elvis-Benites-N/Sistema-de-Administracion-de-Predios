@@ -1,0 +1,231 @@
+<nz-space class="w-100" [nzSize]="42" nzDirection="vertical">
+  <nz-space *nzSpaceItem class="w-100" [nzSize]="12" nzDirection="vertical">
+    <ng-container
+      *ngIf="
+        paginacionResponse;
+        then mostrarContenidoCatalogo;
+        else cargandoContenidoCatalogo
+      "
+    >
+    </ng-container>
+    <ng-template #cargandoContenidoCatalogo>
+      <div
+        class="d-flex justify-center align-item-center"
+        style="padding: 80px"
+        *nzSpaceItem
+      >
+        <nz-spin nzSimple></nz-spin></div
+    ></ng-template>
+
+    <ng-template #mostrarContenidoCatalogo>
+      <ng-container
+        *ngIf="
+          paginacionResponse.totalData;
+          then dataCargada;
+          else dataNoCargada
+        "
+      >
+      </ng-container>
+
+      <ng-template #dataNoCargada>
+        <nz-empty
+          style="padding-top: 48px"
+          nzNotFoundImage="assets/logo/emptyData.svg"
+          [nzNotFoundContent]="contendioEmpty"
+        ></nz-empty>
+        <ng-template #contendioEmpty>
+          <div
+            nz-row
+            [nzGutter]="4"
+            nzJustify="center"
+            style="padding-top: 20px"
+          >
+            <div nz-col>
+              <p nz-typography class="fs-15">No se encontraron</p>
+            </div>
+            <div nz-col>
+              <p nz-typography class="color-primary-6 fs-15">equivalencias</p>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+
+      <ng-template #dataCargada>
+        <nz-space
+          *nzSpaceItem
+          nzDirection="vertical"
+          [nzSize]="12"
+          class="w-100"
+        >
+          <ng-container *ngFor="let contenido of paginacionResponse?.data">
+            <nz-card *nzSpaceItem class="customed-cards">
+              <div nz-row nzAlign="middle" nzJustify="center">
+                <div nz-col nzFlex="142px">
+                  <nz-space
+                    nzDirection="vertical"
+                    class="w-100"
+                    nzAlign="center"
+                  >
+                    <p nz-typography class="fw-600 color-primary-3">
+                      CÓDIGO INFORGEST
+                    </p>
+                    <div nz-row nzJustify="center">
+                      <p nz-typography>{{ contenido.id | idFormat }}</p>
+                    </div>
+                  </nz-space>
+                </div>
+
+                <div nz-col nzFlex="auto">
+                  <nz-space
+                    nzDirection="vertical"
+                    class="w-100"
+                    nzAlign="center"
+                  >
+                    <p nz-typography class="fw-600 color-primary-3">
+                      DESCRIPCIÓN INFORGEST
+                    </p>
+                    <div nz-row nzJustify="center">
+                      <p
+                        nz-typography
+                        class="limit-characteres"
+                        style="max-width: 222px"
+                        nz-tooltip
+                        nzTooltipPlacement="top"
+                        nzTooltipTitle="{{
+                          contenido.itemInforgest.nombre.length > 33
+                            ? contenido.itemInforgest.nombre
+                            : ''
+                        }}"
+                      >
+                        {{ contenido.itemInforgest.nombre }}
+                      </p>
+                    </div>
+                  </nz-space>
+                </div>
+
+                <div nz-col nzFlex="12px" class="align-item-center">
+                  <div nz-row nzJustify="center">
+                    <span nz-icon nzType="swap" nzTheme="outline"></span>
+                  </div>
+                </div>
+
+                <div nz-col nzFlex="auto">
+                  <nz-space
+                    nzDirection="vertical"
+                    class="w-100"
+                    nzAlign="center"
+                  >
+                    <p nz-typography class="fw-600 color-primary-3">
+                      DESCRIPCIÓN SIR
+                    </p>
+                    <div nz-row nzJustify="center">
+                      <p
+                        nz-typography
+                        class="limit-characteres"
+                        style="max-width: 221px"
+                        nz-tooltip
+                        nzTooltipPlacement="top"
+                        nzTooltipTitle="{{
+                          contenido.itemSir.itemNombre.length > 33
+                            ? contenido.itemSir.itemNombre
+                            : ''
+                        }}"
+                      >
+                        {{ contenido.itemSir.itemNombre }}
+                      </p>
+                    </div>
+                  </nz-space>
+                </div>
+
+                <div nz-col nzFlex="150px">
+                  <div nz-row nzJustify="start" [nzGutter]="12">
+                    <div nz-col>
+                      <button
+                        nz-button
+                        nzType="primary"
+                        (click)="openModalDetails(contenido.id)"
+                      >
+                        <span nz-icon nzType="eye" nzTheme="outline"></span>
+                      </button>
+                    </div>
+
+                    <div nz-col>
+                      <button
+                        nz-button
+                        nzType="primary"
+                        nzGhost
+                        (click)="openModalEditable(contenido.id)"
+                      >
+                        <span nz-icon nzType="edit" nzTheme="outline"></span>
+                      </button>
+                    </div>
+
+                    <div nz-col>
+                      <button
+                        nz-button
+                        nzType="primary"
+                        nzDanger
+                        nzGhost
+                        (click)="mostrarModalDelete(contenido.id)"
+                      >
+                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nz-card>
+          </ng-container>
+        </nz-space>
+      </ng-template>
+    </ng-template>
+    <!-- BODY -->
+  </nz-space>
+  <ng-container *ngIf="paginacionResponse">
+    <div nz-row nzJustify="center" *nzSpaceItem>
+      <ng-container *ngTemplateOutlet="paginacion"></ng-container>
+    </div>
+  </ng-container>
+</nz-space>
+
+<!-- PAGINACIÓN -->
+<ng-template #paginacion>
+  <nz-pagination
+    [nzPageIndex]="paginacionResponse.page"
+    [nzTotal]="paginacionResponse.totalData"
+    [nzShowTotal]="total"
+    [nzPageSize]="paginacionResponse.itemsPerPage"
+    nzShowSizeChanger
+    (nzPageIndexChange)="nzPageIndexChange($event)"
+    class="text-center"
+  >
+  </nz-pagination>
+
+  <ng-template #total let-range="range" let-total>
+    <span nz-typography
+      >{{ range[0] }}-{{ range[1] }} de
+      {{ paginacionResponse.totalData }} item(s)</span
+    >
+  </ng-template>
+</ng-template>
+
+<modal-eliminar
+  [isModalVisible]="mostrarModalEliminar"
+  [cerrarModal]="cerrarModalDelete"
+  [idEquivalencia]="idEquivalencia"
+>
+</modal-eliminar>
+
+<modal-detalles
+  [isModalDetailsVisible]="isModalDetailsVisible"
+  [closeDetailsModal]="closeDetailsModal"
+  [idDetails]="idEquivalencia"
+>
+</modal-detalles>
+
+<modal-editar
+  [isEditModalVisible]="isEditModalVisible"
+  [closeEditModal]="closeEditModal"
+  [idEditable]="idEquivalencia"
+>
+</modal-editar>

@@ -1,0 +1,17 @@
+{
+  "services": {
+    "backend": {
+      "url": "http://localhost:6600/predios/api-gateway"
+    }
+  },
+  "sso": {
+    "frontendURL": "http://localhost:2023",
+    "sistemaPublicKey": "hkLtPqJUaVGcpT0ue5ivMgr9CBvaAn"
+  },
+  "banner": {
+    "mostrar": "true",
+    "nombre": "ENTORNO DE DESARROLLO",
+    "background": "#0E7595",
+    "icon": "branches"
+  }
+}

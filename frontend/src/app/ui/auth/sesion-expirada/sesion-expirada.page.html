@@ -1,0 +1,34 @@
+<div class="w-100 h-100 sesion-container">
+  <div class="header-container w-100"></div>
+
+  <div class="d-flex flex-column body-container w-100">
+    <div class="imagen-container d-flex">
+      <img src="assets/images/sesion-expirada.svg" alt="Sesión expirada" />
+    </div>
+
+    <div class="informacion-container w-100" nz-row nzJustify="center">
+      <div nz-col>
+        <div nz-row nzJustify="center">
+          <h2 nz-typography>Tu sesión ha expirado</h2>
+        </div>
+
+        <nz-space nzDirection="vertical" nzSize="middle">
+          <div nz-row nzJustify="center" *nzSpaceItem>
+            <h4 nz-typography>
+              Por favor, haz click en el botón "Volver al login" para iniciar
+              sesión nuevamente
+            </h4>
+          </div>
+
+          <div nz-row nzJustify="center" *nzSpaceItem>
+            <!-- <h5 nz-typography> -->
+            <a nz-button nzType="primary" routerLink="/">
+              <span>Volver al login</span>
+            </a>
+            <!-- </h5> -->
+          </div>
+        </nz-space>
+      </div>
+    </div>
+  </div>
+</div>

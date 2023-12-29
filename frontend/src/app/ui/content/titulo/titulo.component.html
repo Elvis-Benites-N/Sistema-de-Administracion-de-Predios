@@ -1,0 +1,39 @@
+<!-- HEADER -->
+<div class="bg-color-neutral-1 header">
+  <div nz-row nzJustify="space-between" nzAlign="middle">
+    <div nz-col nzSpan=>
+      <!-- BREADCRUMS -->
+      <nz-breadcrumb nz-page-header-breadcrumb nzSeparator="/">
+        <nz-breadcrumb-item *ngFor="let bread of breadcrumbs">
+          <div *ngIf="bread.routerlink; then routerLink; else text"></div>
+
+          <ng-template #routerLink>
+            <a [routerLink]="bread.routerlink">
+              <span
+                nz-icon
+                [nzType]="bread.icon"
+                nzTheme="outline"
+                *ngIf="bread.icon"
+              ></span>
+              {{ bread.label }}
+            </a>
+          </ng-template>
+          <ng-template #text>
+            {{ bread.label }}
+          </ng-template>
+        </nz-breadcrumb-item>
+      </nz-breadcrumb>
+    </div>
+
+    <div nz-col>
+      <div nz-row [nzGutter]="12" nzAlign="middle">
+        <div nz-col>
+          <nz-avatar nzIcon="user"></nz-avatar>
+        </div>
+        <div nz-col>
+          <span nz-typography>{{usuario.persona?.nombres}} {{usuario.persona?.apellidos}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

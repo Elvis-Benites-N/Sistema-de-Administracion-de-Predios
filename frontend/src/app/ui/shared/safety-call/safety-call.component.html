@@ -1,0 +1,41 @@
+<div *ngIf="!errorMessage; then mostrarContenido; else mostrarError"></div>
+
+<ng-template #mostrarContenido>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #mostrarError>
+  <ng-container *ngIf="!esFiltros">
+    <nz-result [nzIcon]="imagenError" [nzSubTitle]="errorMessage">
+      <div nz-result-extra>
+        <button nz-button nzType="primary" (click)="clickRetry()">
+          <span nz-icon nzType="reload" nzTheme="outline"></span>
+          Reintentar
+        </button>
+      </div>
+    </nz-result>
+  </ng-container>
+
+  <ng-container *ngIf="esFiltros">
+    <nz-alert
+      nzShowIcon
+      nzDescription="{{ errorMessage }}"
+      [nzAction]="reintentar"
+    ></nz-alert>
+
+    <ng-template #reintentar>
+      <button nz-button nzType="primary" (click)="clickRetry()">
+        <span nz-icon nzType="reload" nzTheme="outline"></span>
+        Reintentar
+      </button>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #imagenError>
+    <img
+      src="assets/images/falla-conexion.svg"
+      width="320px"
+      alt="error-conexion"
+    />
+  </ng-template>
+</ng-template>

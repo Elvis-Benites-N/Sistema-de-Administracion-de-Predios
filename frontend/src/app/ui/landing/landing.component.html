@@ -1,0 +1,240 @@
+<div
+  class="d-flex flex-column gap-60 w-100"
+  style="
+    padding: 24px;
+    background-color: white;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+  "
+>
+  <!-- HEADER -->
+  <div class="d-flex align-item-center" style="justify-content: space-between">
+    <!-- LOGO -->
+    <img
+      src="assets/logo/logo-predios.svg"
+      alt="Logo-Sistema de Administración de Predios"
+      width="180px"
+    />
+
+    <!-- SOCIAL NETWORK -->
+    <div class="d-flex" style="gap: 10px; padding: 12px">
+      <a
+        href="https://www.facebook.com/quipucamayoc.unmsm.edu.pe/"
+        target="_blank"
+        class="social-style"
+      >
+        <svg
+          id="facebook-icon"
+          width="48"
+          height="48"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect width="48" height="48" fill="url(#facebook-pattern0)" />
+          <defs>
+            <pattern
+              id="facebook-pattern0"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use
+                xlink:href="#image0_180853_4121"
+                transform="scale(0.0111111)"
+              />
+            </pattern>
+            <image
+              id="image0_180853_4121"
+              width="90"
+              height="90"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAACNklEQVR4nO2csWpUQRSGv8rIggRtk8pGISBi5xuks/AVLE1SiY9gnVorQXwFO8UimkqtRHtbRQxo5ZELt0i3E3funNm73wen3J1zvvw7O3chAyIiIiIiIiIiMnAZOAJOgTMgZlpnwHvgENhq/affBT51ICEa18dx9mZJ3kTJcU52k2QfdTBsJNdBC9GnHQwayfWuhehfHQwayTU4mJzsIaOTUjSKJjuFJpp8cW4d5Et1j0bR6Yn7DjwHHgC3gR1gMR4VrgLXgOvAHrAPvDTRXFjwI+DKBc9fw2vcOiiT8AW4+Z8HXEVTJvkrsL3CU4SiWS75D3BnBcmKpizNxytKVjTLJf8Fbih6+mPc2wqSTTTLRT9RdJsHk3uFou8Cr8Zzdo11Jyc6q72Cnocnw9+V152c6Kx2Cnp+McG6kxOd1aKg58+KpkmyfiiaJqKn+CRNTvZWEYpWdFWyExwmeg33wXM866233tJaize99TZX0d96622Oohfjz61d9TZH0bd67G2Oou/32NscRT/usbc5in7aY29zFP1600VHpYHXMgTZYkPRiq5KdoLDRCu6KtkJDhOt6KpkJzhMtKKrkp3gMNGKrkp2gsNEK7oq2QkOE63oqmQnOEy0oquSneAw0YquSnaCw0QretbXsZVQe82fbOAFgyWs5QWDhx3IjWTRD2nA1ngR6qaK/gBcohG7Hckuoabkkn8grZ7sg3G/yvyCLGGV9x9mOxm3i2ZJFhERERERERGhY/4BzWMTzORFMuAAAAAASUVORK5CYII="
+            />
+          </defs>
+        </svg>
+      </a>
+
+      <a
+        href="https://quipucamayoc.unmsm.edu.pe/portal/"
+        target="_blank"
+        class="social-style"
+      >
+        <svg
+          id="web-icon"
+          width="49"
+          height="48"
+          viewBox="0 0 49 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect x="0.5" width="48" height="48" fill="url(#web-pattern0)" />
+          <defs>
+            <pattern
+              id="web-pattern0"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use
+                xlink:href="#image0_180821_5376"
+                transform="scale(0.0111111)"
+              />
+            </pattern>
+            <image
+              id="image0_180821_5376"
+              width="90"
+              height="90"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHWUlEQVR4nO2da4hVVRTH/+N1ZhKzghxRy0cPEupD5dhjMm/0jiCaIs0yymd9MDOzFxGm9BqLGVEk04rAD0FUakKlQkRU9jDsQdoLM2jGTOdhTmU26okFa+ByOWuds+/Z+9xz7j0/2CRzz1577XX2OWftvdbeARkZGRkZGRkZGRkZGRmhyQFoBDALwFIAGwB8C2AXgG4Ah7l089/ot/V87UyuSzIyfDgFwH0A3gZwAIAXsfTwDZoHYCSqnOMATAOwGcARC8aVCsl+j9uqRxUxGMB8AO0OjSuVPwAsBnACKpiBABYA6CyDgYvLfr7ZpFNFMQHAtgQYuLh8A2AiKoA6AMsBHLNglB0AJgMYzmUKgJ0W5JJubaxrKjnd4ih+RXjM6W+vWmrjcwBjkTIuZxcrTAc/Yb9Y+n0VgBqlLfptjVL/MLcRRhfyzfNICTcD+DdEpz4CcCmAuwJuQm2INumx36rIuRPAJAAfh9DrEIBmJJwZIXziPQBu45FIBtotXPe34aNM1/4jyPqF26phf/r3AB2pD9OR4JEcZOQ3AQwtqDNTufbxEnRYpMgrNFwDT9uDjN2cxHfyIUXpPp4OF/OlcH17ibM4mm12CDK/8Ln+ftZNe43kk+RdaB++PwFc5VPvIqXOwgj6PKTIvcDn+qsBHAz4QJbdG6kLcOG6hM4Rq5WODUHpDFFuPHkwEG56t9KPz0J+lJ2xPGAkny/UywHYJ9RbaUGvFwTZe5UlVJq99ir9aUWZmKjM+P4DcI1S90rDx9uUixX5lyn1rlB8+qMAmhAzA3mdQOrMvQH1Vwj1vreo449CG8sC6s1X+rU97qDCAkWZN0LU/06o22JRx+eENigio0G+9ltK//y8J2fryfuU5cdCP9mPBuWVk7fscvq1QW0PC6h7Mq9dS308HjHwoHK3acYXxGTl42nzy16reB+3hKg/Tekn+d9OqVcmBNVU9vDkyBl3JKCTXkLKVJeG3pyADnoJKe+4MvJIx9FqL2WljyM91tH8y2otc10YemMCOuYlrJC/bZWc4ippU9pilggyXoI7XhbafMKCT95je6Y4QWjooGH0+EVBDiW1uGKx4UqeH3XKgtN4m8pKkRDyQkxYL8iZDXfMFtpcZyhniyDHashLWjd42lDOp4IcbaUvKtcpgV8TWgQ5z9pUdkOEKXchPwtyzoU7zhPa/MlQzu2WngwVaUnUdH22XZBzBtxxptDmbyWsv/vJ+cqmslJKwKmGcjoFOSPgjpHKKpwJo5VUBmt0CY2Yxvb+EuScCHecpHhMNuSY3jAVKbxjmvZ6RJDjMvBZq0yhbcihrCznhjY1UJ+lG2bCwIJ2PgAwB8A4DmCYLhFL8VFrSO9W08z5XkuvIBNI9q8ceI1Cg6A77blJ3MdwvyCHOuGKeg5NufJeyJNKjXs3CslnkqA7JRA5n7BMtTRhGYfkM0fQnWxjjaVCI88YytkqyElMIqFCq6D783EsKm2ytKg0FfExiBN4unmZs43/FsR4ISmH4qjWaFScfhMXb5WD7FFTlvm0v5PXRIIYzGvnhXXPsalcTsm2zFtYG25FfHQq/jDpNyCEjJtYTlfI6618EJNaJIK24m0JuX+c9q8/AAfMqxBDeyEK+fs3okykLd1AwkTG2hKm6lbYVGWG9jiV2GpcEBET/5JWJEqRZfKhrLokR4koMt/nj2AsLFQUCRMRvlXJ0NS2Itsi6g3siWuCpSWid4VI8h6muFgug7T92Hpi1saRkK7l4W0MMTJ3CnUfda245dfTD64/lBS1+FpRIGhKvVKoR3kfaTK0x9Gnh11+KC9RXgEUsrq+xO1vZ1nQ7ewYDR3Lh7JNaZgi3hcqT8R+od5TFvRqLYOh+79RdPiAder45BbtC90k1C1eBesvHRGPTRsUkALgxVBWuNiPODZgH3UvgGt96jUpdaIkPc5lGeU0dCl5iaHIBxwjcYQ3gRazXcmLKyUFoZ4j3kkwtNXEmkKaQyw6bSiKeM9SriUX0pRHCuqX29C0IdQZ00MYey+vmdTwCNytbPAcYZgbV3juRrkNbRpPLWlka68RryA/Oc83R3OZwrxCcnwYVmFdCdcG7uQjh2LZnJ8P+EB6Bsex0ZkgGjXClg0JWwbt4xnu6wAeA3ADgDEoA2P45BbPQlktjOx65SQbiai6LOJgtdMtyqbU8uThqKUjM6fwJsqh/G/tzBAJGzc9sTQGTGxcFImocikIcBoSTI4DvPtSYugP2ah+v9ERnYmnHsDdvIckqYbewbsQ1qR1VBcbnHZ1vesoui7hhfDz+8+5G5v2UV3McF6jWKfsl7E1K9PqHfJZBNNGddkPHozCAD4vbwZvllzHW8x28U04zOvg3bzSt42TJ5dw0ktQrrVk5GPCvsmKG9Vx0VHCJvyKeFfHjd9W49cC4pzZqC4xWNHCI5s8nydDph5X7Ls6aYxW1mQSPVtMI9qoTsOGp9SgvavvKbdy1TKqababYZFRPpOqAyFS4TJgDp2gTv+rEYrw038D08L+B0mqVUJ23aMyAAAAAElFTkSuQmCC"
+            />
+          </defs>
+        </svg>
+      </a>
+      <a href="" class="social-style">
+        <svg
+          id="mail-icon"
+          width="49"
+          height="48"
+          viewBox="0 0 49 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect x="0.5" width="48" height="48" fill="url(#mail-pattern0)" />
+          <defs>
+            <pattern
+              id="mail-pattern0"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use
+                xlink:href="#image0_180821_5378"
+                transform="scale(0.0111111)"
+              />
+            </pattern>
+            <image
+              id="image0_180821_5378"
+              width="90"
+              height="90"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAACzUlEQVR4nO2br4sVURTHP/5AhEVRMAgWwxaLyWIyadLg2rRtNFoM+gdsELZYZAUFo0mbSYtFi2WLxWAwyC4Iq6ise2Rgtsju3Dsz9845g98PHHjwmDdzP9w5c+6Z+0AIIYQQQgghhBBCCCGEEEKU5QTwFjAFXQ7eA6fGyl4AXkk0+0l+DRwrM6/hCPBcsvlX8kvg6BChBzq+OwQ8kWx2JT8FDg90ybOMgx9INg+Bg4lJ+bhLdO7tcPc/lr3SI812is5N8LeBPwEGbhPFDnCnZ+GQFJ1bstwCfgeQYJVjG1hOuDi5RymcJbqJdeBM4gRXgR8BZFil+AXcSDg4DXzY49hs0U18AhYTJ7oEfAsgxQrHFnAlMfazwMd9ju8luokvwPnECS8AXwPIsUKxCVxMjPkc8LnjN3qLLnVim0mUmliDRO/eSpdH3Eo2gyiZKgeLbuLniIeDBY+ch/+1Hg//UaLHlDsWOGqUs6NFDy3gLWjUWqAVET1kSWoBo2bLoajoPk0WCxa1m2jFRU9x0VY4ppgcVUTPqfO3MlG6qyY6eudvZ+IHeFXRTbwL2PnbdihJq4uuUfybUwcuvOgonb+tkR24WYj27vxtOjfCJhVtTgOO0NqdXLRN3PmLkLLcRNtEnb9Ir9/cRFvlMiunA3dzwrLSVbRVWjhEXCi5i7bCS+GoS/8wog1Yzdjzt9Zx/FpGM2vVaWyhRFu7ebIR2sUS8Ab43lYwTaq4njjGe2NmONEGvBi6BTbwC4eQoq3gpu4or9DCirbMzt9c/g4SWrS1q8PU8nm/Zfx6gOufjWhrH3r3MlPJceB+wM2WsxBtbWwAj9oKY7HNvwvt56X2u40A1zl70TbjkGgkGu9ZqBmNvzilDvylKkcj0XjPOM1o/CUpdeAvUDmaWKEFCxKN9yzUjMZfnFIH/lKVowkoWgghhBBCCCGEEEIIIYQQQpDgL1QXHoW2Ra6kAAAAAElFTkSuQmCC"
+            />
+          </defs>
+        </svg>
+      </a>
+    </div>
+
+    <!-- LOGIN BUTTON -->
+
+    <a
+      [href]="urlSSO"
+      class="d-flex align-item-center justify-center fw-500 bg-color-neutral-1 bd-color-primary-6 gap-8 loggin-button"
+    >
+      <svg
+        id="button-login"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_180836_4155)">
+          <rect width="14" height="14" fill="white" fill-opacity="0.01" />
+          <g clip-path="url(#clip1_180836_4155)">
+            <path
+              d="M7.15125 0.282113C4.76844 0.275863 2.67156 1.50868 1.47313 3.37118C1.42 3.45399 1.47938 3.56336 1.57781 3.56336H2.67625C2.75125 3.56336 2.82156 3.53055 2.86844 3.47274C2.97781 3.33993 3.095 3.2118 3.21844 3.08993C3.72781 2.58211 4.32 2.18211 4.97938 1.90399C5.66063 1.61649 6.38563 1.46961 7.13406 1.46961C7.8825 1.46961 8.6075 1.61493 9.28875 1.90399C9.94813 2.18211 10.5403 2.58211 11.0497 3.08993C11.5591 3.59774 11.9575 4.18993 12.2372 4.84774C12.5263 5.52899 12.6716 6.25243 12.6716 7.00086C12.6716 7.7493 12.5247 8.47274 12.2372 9.15399C11.9591 9.8118 11.5591 10.404 11.0497 10.9118C10.5403 11.4196 9.94813 11.8196 9.28875 12.0977C8.60696 12.3857 7.87417 12.5334 7.13406 12.5321C6.38563 12.5321 5.66063 12.3852 4.97938 12.0977C4.3213 11.8199 3.72329 11.4172 3.21844 10.9118C3.095 10.7884 2.97938 10.6602 2.86844 10.529C2.82156 10.4712 2.74969 10.4384 2.67625 10.4384H1.57781C1.47938 10.4384 1.41844 10.5477 1.47313 10.6306C2.67 12.4884 4.7575 13.7196 7.13406 13.7196C10.8247 13.7196 13.8216 10.7493 13.8591 7.06961C13.8966 3.33055 10.895 0.291488 7.15125 0.282113ZM5.17188 8.75086V7.56336H0.265625C0.196875 7.56336 0.140625 7.50711 0.140625 7.43836V6.56336C0.140625 6.49461 0.196875 6.43836 0.265625 6.43836H5.17188V5.25086C5.17188 5.14618 5.29375 5.0868 5.375 5.15243L7.59219 6.90243C7.60713 6.91412 7.61921 6.92906 7.62752 6.94611C7.63583 6.96317 7.64015 6.98189 7.64015 7.00086C7.64015 7.01984 7.63583 7.03856 7.62752 7.05561C7.61921 7.07267 7.60713 7.08761 7.59219 7.0993L5.375 8.8493C5.29375 8.91336 5.17188 8.85555 5.17188 8.75086Z"
+              fill="#4939BB"
+            />
+          </g>
+        </g>
+        <defs>
+          <clipPath id="clip0_180836_4155">
+            <rect width="14" height="14" fill="white" />
+          </clipPath>
+          <clipPath id="clip1_180836_4155">
+            <rect width="14" height="14" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      Iniciar Sesión
+    </a>
+  </div>
+
+  <!-- BODY -->
+  <div class="d-flex h-100 w-100 align-item-center flex-column gap-48">
+    <div class="d-flex flex-column gap-20 align-item-center">
+      <div class="d-flex flex-column">
+        <p class="color-primary-6 fw-600 fs-60 w-100" style="gap: 0 !important">
+          LA FORMA MÁS FACIL Y CONFIABLE DE
+        </p>
+        <p class="fs-40 text-align">TENER EL CONTROL DE TUS PAGOS</p>
+      </div>
+      <p class="text-align" style="width: 651px">
+        Agilice el proceso de pago de facturas y boletas entre el catálogo SIR y
+        el Inforgest. Nuestro sistema compara y enlaza automáticamente los
+        comprobantes para agilizar los pagos.
+      </p>
+    </div>
+
+    <!-- CENTRAL BUTTON -->
+
+    <a
+      [href]="urlSSO"
+      class="landing-button bg-color-primary-6 bd-color-primary-6 d-flex align-item-center"
+      style="font-size: 18px"
+    >
+      <svg
+        id="button-login"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_180836_4155)">
+          <rect width="14" height="14" fill="white" fill-opacity="0.01" />
+          <g clip-path="url(#clip1_180836_4155)">
+            <path
+              d="M7.15125 0.282113C4.76844 0.275863 2.67156 1.50868 1.47313 3.37118C1.42 3.45399 1.47938 3.56336 1.57781 3.56336H2.67625C2.75125 3.56336 2.82156 3.53055 2.86844 3.47274C2.97781 3.33993 3.095 3.2118 3.21844 3.08993C3.72781 2.58211 4.32 2.18211 4.97938 1.90399C5.66063 1.61649 6.38563 1.46961 7.13406 1.46961C7.8825 1.46961 8.6075 1.61493 9.28875 1.90399C9.94813 2.18211 10.5403 2.58211 11.0497 3.08993C11.5591 3.59774 11.9575 4.18993 12.2372 4.84774C12.5263 5.52899 12.6716 6.25243 12.6716 7.00086C12.6716 7.7493 12.5247 8.47274 12.2372 9.15399C11.9591 9.8118 11.5591 10.404 11.0497 10.9118C10.5403 11.4196 9.94813 11.8196 9.28875 12.0977C8.60696 12.3857 7.87417 12.5334 7.13406 12.5321C6.38563 12.5321 5.66063 12.3852 4.97938 12.0977C4.3213 11.8199 3.72329 11.4172 3.21844 10.9118C3.095 10.7884 2.97938 10.6602 2.86844 10.529C2.82156 10.4712 2.74969 10.4384 2.67625 10.4384H1.57781C1.47938 10.4384 1.41844 10.5477 1.47313 10.6306C2.67 12.4884 4.7575 13.7196 7.13406 13.7196C10.8247 13.7196 13.8216 10.7493 13.8591 7.06961C13.8966 3.33055 10.895 0.291488 7.15125 0.282113ZM5.17188 8.75086V7.56336H0.265625C0.196875 7.56336 0.140625 7.50711 0.140625 7.43836V6.56336C0.140625 6.49461 0.196875 6.43836 0.265625 6.43836H5.17188V5.25086C5.17188 5.14618 5.29375 5.0868 5.375 5.15243L7.59219 6.90243C7.60713 6.91412 7.61921 6.92906 7.62752 6.94611C7.63583 6.96317 7.64015 6.98189 7.64015 7.00086C7.64015 7.01984 7.63583 7.03856 7.62752 7.05561C7.61921 7.07267 7.60713 7.08761 7.59219 7.0993L5.375 8.8493C5.29375 8.91336 5.17188 8.85555 5.17188 8.75086Z"
+              fill="white"
+            />
+          </g>
+        </g>
+        <defs>
+          <clipPath id="clip0_180836_4155">
+            <rect width="14" height="14" fill="white" />
+          </clipPath>
+          <clipPath id="clip1_180836_4155">
+            <rect width="14" height="14" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+      Iniciar Sesión
+    </a>
+  </div>
+
+  <!-- IMAGES -->
+  <img
+    src="assets/images/landing/cloud.svg"
+    alt="clouds-sgp"
+    class="cloud-sgp"
+  />
+
+  <img
+    src="assets/images/landing/buildings.svg"
+    style="position: absolute; top: 280px; left: 250px; z-index: 5"
+    alt="buildings-sgp"
+  />
+
+  <img src="assets/images/landing/bird1.svg" alt="" class="bird1" />
+  <img src="assets/images/landing/bird2.svg" alt="" class="bird2" />
+
+  <img
+    src="assets/images/landing/backlanding.svg"
+    alt="quipucamayoc-sgp"
+    style="position: absolute; top: 410px; left: -10px"
+  />
+</div>

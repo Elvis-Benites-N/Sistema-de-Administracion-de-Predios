@@ -1,0 +1,117 @@
+<nz-modal
+  [(nzVisible)]="isEditModalVisible"
+  (nzOnCancel)="closeEditModal()"
+  [nzTitle]="modalTitle"
+  [nzFooter]="modalFooter"
+  nzCentered="true"
+  [nzWidth]="772"
+>
+  <ng-container *nzModalContent>
+    <form [formGroup]="formWrapper.formulario" nz-form>
+      <div nzAlign="center" class="w-100 d-flex flex-column gap-12">
+        <!-- EQUIVALENCIAS -->
+        <div nz-row nzGutter="24" nzAlign="middle">
+          <div nz-col nzFlex="1 1">
+            <!-- INPUT INFORGEST -->
+            <div class="w-100 d-flex flex-column gap-4">
+              <p nz-typography class="color-primary-4">Item Inforgest</p>
+
+              <input
+                nz-input
+                formControlName="nombreInforgest"
+                [disabled]="true"
+                class="w-100"
+              />
+            </div>
+          </div>
+
+          <div nz-col>
+            <div nz-row nzJustify="center">
+              <span nz-icon nzType="swap" nzTheme="outline"></span>
+            </div>
+          </div>
+
+          <div nz-col nzFlex="1 1">
+            <!-- Item correlacionado del facturador -->
+            <div class="w-100 d-flex flex-column gap-4">
+              <p nz-typography class="color-primary-4">
+                Item correlacionado del facturador
+              </p>
+
+              <input nz-input formControlName="nombreSir" [disabled]="true" />
+            </div>
+          </div>
+        </div>
+
+        <!-- FECHAS -->
+        <div class="d-flex flex-column gap-4" style="width: 80%">
+          <p nz-typography class="color-primary-4">Fecha de expiración</p>
+
+          <div nz-row [nzGutter]="12">
+            <div nz-col nzFlex="1 1">
+              <div class="w-100 d-flex flex-column">
+                <p nz-typography nzType="secondary" class="fs-12">
+                  Fecha inicio
+                </p>
+                <nz-date-picker
+                  [nzDisabled]="true"
+                  nzFormat="dd/MM/yyyy"
+                  class="w-100"
+                  formControlName="fechaInicio"
+                ></nz-date-picker>
+              </div>
+            </div>
+            <div nz-col nzFlex="1 1">
+              <div class="w-100 d-flex flex-column">
+                <p nz-typography nzType="secondary" class="fs-12">
+                  Fecha final
+                </p>
+                <nz-date-picker
+                  [nzDisabled]="false"
+                  class="w-100"
+                  nzFormat="dd/MM/yyyy"
+                  [nzDisabledDate]="disabledDate"
+                  formControlName="fechaExpiracion"
+                ></nz-date-picker>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+</nz-modal>
+
+<ng-template #modalTitle>
+  <div nz-row [nzGutter]="8">
+    <div nz-col>
+      <h5 nz-typography class="fw-500">Editar equivalencia:</h5>
+    </div>
+    <div nz-col>
+      <h5 nz-typography class="color-primary-6 fw-500">
+        {{ itemDetails?.id | idFormat }}
+      </h5>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #modalFooter>
+  <div nz-row [nzGutter]="8" nzJustify="center">
+    <div nz-col>
+      <button nz-button nzType="default" (click)="closeEditModal()">
+        <span nz-icon nzType="close" nzTheme="outline"></span>
+        Cancelar
+      </button>
+    </div>
+    <div nz-col>
+      <button
+        nz-button
+        nzType="primary"
+        (click)="actualizarFechaDeExpiracion()"
+      >
+        <span nz-icon nzType="form" nzTheme="outline"></span>
+        Editar item
+      </button>
+    </div>
+  </div>
+</ng-template>

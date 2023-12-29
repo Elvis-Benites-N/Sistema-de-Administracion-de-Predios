@@ -1,0 +1,648 @@
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="cerrarModal()"
+  [nzStyle]="{ top: '150px' }"
+  [nzWidth]="1320"
+>
+  <ng-container *nzModalContent>
+    <nz-space
+      [nzSize]="24"
+      nzDirection="vertical"
+      class="w-100"
+      id="comprobante-modal"
+    >
+      <ng-container
+        *ngIf="!itemDetalles; then codigoCargando; else codigoCargado"
+      >
+      </ng-container>
+
+      <ng-template #codigoCargado>
+        <div nz-row *nzSpaceItem [nzGutter]="24">
+          <!-- PRIMERA PARTE -->
+          <div nz-col nzSpan="12">
+            <nz-space [nzSize]="16" nzDirection="vertical" class="w-100">
+              <!-- ESTABLECIMIENTO -->
+              <nz-space
+                *nzSpaceItem
+                [nzSize]="8"
+                nzDirection="vertical"
+                class="w-100"
+              >
+                <div nz-row *nzSpaceItem [nzGutter]="4">
+                  <div nz-col>
+                    <span
+                      class="color-primary-6"
+                      nz-icon
+                      nzType="apartment"
+                      nzTheme="outline"
+                    ></span>
+                  </div>
+                  <div nz-col>
+                    <span nz-typography class="color-primary-6"
+                      >Datos del establecimiento</span
+                    >
+                  </div>
+                </div>
+                <nz-space
+                  *nzSpaceItem
+                  nzDirection="vertical"
+                  [nzSize]="4"
+                  class="modal-card bd-color-primary-1 w-100"
+                >
+                  <h5 *nzSpaceItem nz-typography class="color-primary-8">
+                    UNIDAD DE ADMINISTRACION DE FINCAS
+                  </h5>
+                  <div nz-row [nzGutter]="8" *nzSpaceItem>
+                    <div nz-col>
+                      <span
+                        nz-icon
+                        nzType="environment"
+                        nzTheme="outline"
+                        class="color-character-primary-45"
+                      ></span>
+                    </div>
+
+                    <div nz-col>
+                      <span nz-typography nzType="secondary"
+                        >AV. VENEZUELA NRO. SN INT. 0062 (AV. VENEZUELA CDRA.
+                        34)
+                      </span>
+                    </div>
+                  </div>
+                </nz-space>
+              </nz-space>
+
+              <!-- CLIENTE -->
+              <nz-space
+                *nzSpaceItem
+                [nzSize]="8"
+                nzDirection="vertical"
+                class="w-100"
+              >
+                <div nz-row *nzSpaceItem [nzGutter]="4">
+                  <div nz-col>
+                    <span
+                      class="color-primary-6"
+                      nz-icon
+                      nzType="user"
+                      nzTheme="outline"
+                    ></span>
+                  </div>
+                  <div nz-col>
+                    <span nz-typography class="color-primary-6"
+                      >Datos del cliente</span
+                    >
+                  </div>
+                </div>
+                <nz-space
+                  *nzSpaceItem
+                  nzDirection="vertical"
+                  [nzSize]="4"
+                  class="modal-card bd-color-primary-1 w-100"
+                >
+                  <div nz-row *nzSpaceItem nzJustify="space-between">
+                    <div nz-col>
+                      <h5 nz-typography class="color-primary-8">
+                        {{ itemDetalles?.clienteNombre }}
+                      </h5>
+                      <nz-space nzDirection="vertical" class="w-100">
+                        <div nz-row [nzGutter]="8">
+                          <div nz-col>
+                            <span
+                              nz-icon
+                              nzType="home"
+                              nzTheme="outline"
+                              class="color-character-primary-45"
+                            ></span>
+                          </div>
+
+                          <div nz-col>
+                            <p
+                              class="limit-characteres"
+                              nz-typography
+                              nzType="secondary"
+                              nz-tooltip
+                              nzTooltipPlacement="top"
+                              style="max-width: 298px"
+                              nzTooltipTitle="{{
+                                itemDetalles?.clienteDireccion.length > 43
+                                  ? itemDetalles?.clienteDireccion
+                                  : ''
+                              }}"
+                            >
+                              {{
+                                itemDetalles?.clienteDireccion ||
+                                  "SIN DIRECCIÓN"
+                              }}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div nz-row [nzGutter]="8">
+                          <div nz-col>
+                            <span
+                              nz-icon
+                              nzType="mail"
+                              nzTheme="outline"
+                              class="color-character-primary-45"
+                            ></span>
+                          </div>
+
+                          <div nz-col>
+                            <p nz-typography nzType="secondary">
+                              {{
+                                itemDetalles?.clienteEmail
+                                  ? itemDetalles?.clienteEmail
+                                  : "@UNMSM.EDU.PE"
+                              }}
+                            </p>
+                          </div>
+                        </div>
+                      </nz-space>
+                    </div>
+                    <div nz-col>
+                      <nz-tag
+                        nzColor="default"
+                        class="tag-padding fw-600 bg-color-white-1"
+                        ><h5 nz-typography class="color-primary-4">
+                          {{ itemDetalles?.clienteTipoDocumento }}:
+                          {{
+                            itemDetalles?.clienteNumeroDocumento ||
+                              "___________"
+                          }}
+                        </h5>
+                      </nz-tag>
+                    </div>
+                  </div>
+                </nz-space>
+              </nz-space>
+            </nz-space>
+          </div>
+
+          <!-- INMUEBLE -->
+          <div nz-col nzSpan="12">
+            <nz-space nzDirection="vertical" [nzSize]="8" class="w-100">
+              <div nz-row *nzSpaceItem [nzGutter]="4">
+                <div nz-col>
+                  <span
+                    class="color-primary-6"
+                    nz-icon
+                    nzType="block"
+                    nzTheme="outline"
+                  ></span>
+                </div>
+                <div nz-col>
+                  <span nz-typography class="color-primary-6"
+                    >Detalle del inmueble</span
+                  >
+                </div>
+              </div>
+
+              <nz-space
+                *nzSpaceItem
+                class="w-100 modal-card bd-color-primary-1"
+                [nzSize]="16"
+                nzDirection="vertical"
+              >
+                <nz-space
+                  *nzSpaceItem
+                  class="w-100"
+                  [nzSize]="12"
+                  nzDirection="vertical"
+                >
+                  <div *nzSpaceItem nz-row nzJustify="space-between">
+                    <div nz-col>
+                      <h5 nz-typography class="color-primary-8">
+                        {{ itemDetalles?.itemActivoNombre }}
+                      </h5>
+                    </div>
+                    <div nz-col>
+                      <div nz-row [nzGutter]="8">
+                        <div nz-col>
+                          <span
+                            nz-icon
+                            nzType="dollar"
+                            nzTheme="outline"
+                            class="color-primary-4"
+                          ></span>
+                        </div>
+                        <div nz-col>
+                          <span nz-typography class="color-primary-4">{{
+                            itemDetalles?.monedaSimbolo === "PEN"
+                              ? "EN SOLES"
+                              : "EN DÓLARES"
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <nz-space *nzSpaceItem nzDirection="vertical" class="w-100">
+                    <nz-space *nzSpaceItem nzDirection="vertical" class="w-100">
+                      <ng-container *nzSpaceItem>
+                        <div
+                          *ngFor="
+                            let servicios of itemDetalles?.pagosInforgestDetalleInterface;
+                            let i = index
+                          "
+                          nz-row
+                          nzJustify="space-between"
+                          id="modal-price"
+                        >
+                          <div nz-col>
+                            <span nz-typography>{{
+                              servicios.itemFincasNombre
+                            }}</span>
+                          </div>
+                          <div nz-col>
+                            <span nz-typography
+                              >{{
+                                itemDetalles?.monedaSimbolo == "PEN"
+                                  ? "S/"
+                                  : "$"
+                              }}
+                              {{ servicios.itemMonto | number : "1.2-2" }}</span
+                            >
+                          </div>
+                          <nz-divider
+                            *ngIf="
+                              i <
+                              itemDetalles?.pagosInforgestDetalleInterface
+                                .length -
+                                1
+                            "
+                          ></nz-divider>
+                        </div>
+                      </ng-container>
+                      <div *nzSpaceItem nz-row>
+                        <nz-divider></nz-divider>
+                      </div>
+                    </nz-space>
+                    <div
+                      *nzSpaceItem
+                      nz-row
+                      nzJustify="end"
+                      [nzGutter]="8"
+                      nzAlign="middle"
+                    >
+                      <div nz-col>
+                        <span nz-typography class="color-primary-6"
+                          >Total:</span
+                        >
+                      </div>
+                      <div nz-col>
+                        <h4 nz-typography class="fw-500 color-primary-6">
+                          {{
+                            itemDetalles?.monedaSimbolo == "PEN" ? "S/" : "$"
+                          }}
+                          {{ itemDetalles?.montoTotal | number : "1.2-2" }}
+                        </h4>
+                      </div>
+                    </div>
+                  </nz-space>
+                </nz-space>
+
+                <ng-container *nzSpaceItem>
+                  <nz-space
+                    [nzSize]="4"
+                    nzDirection="vertical"
+                    class="w-100 bg-color-neutral-2"
+                    id="factura-resumen"
+                    *ngIf="
+                      itemDetalles?.clienteTipoDocumento === 'RUC' &&
+                      itemDetalles?.montoTotal > 700
+                    "
+                  >
+                    <span *nzSpaceItem nz-typography class="color-primary-4"
+                      >Información de detracción</span
+                    >
+
+                    <div
+                      nz-row
+                      *nzSpaceItem
+                      nzJustify="space-between"
+                      nzAlign="bottom"
+                    >
+                      <div nz-col>
+                        <div nz-row [nzGutter]="12">
+                          <div nz-col>
+                            <span nz-typography class="color-primary-8"
+                              >{{
+                                infoDetraccion?.infoDetraccionInterface
+                                  ?.detraccionCodigo || "---"
+                              }}
+                              {{
+                                infoDetraccion?.infoDetraccionInterface
+                                  ?.detraccionDescripcion || "---"
+                              }}</span
+                            >
+                          </div>
+                          <div nz-col>
+                            <nz-divider nzType="vertical"></nz-divider>
+                          </div>
+
+                          <div nz-col>
+                            <span nz-typography class="color-primary-8"
+                              >{{
+                                infoDetraccion?.infoDetraccionInterface
+                                  ?.detraccionPorcentaje
+                              }}%</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div nz-col>
+                        <h5
+                          nz-typography
+                          class="color-primary-6"
+                          *ngIf="
+                            infoDetraccion &&
+                            infoDetraccion.infoDetraccionInterface
+                          "
+                        >
+                          {{
+                            itemDetalles?.monedaSimbolo == "PEN" ? "S/" : "$"
+                          }}
+                          {{ detraccionResult | number : "1.2-2" }}
+                        </h5>
+                      </div>
+                    </div>
+                  </nz-space>
+                </ng-container>
+              </nz-space>
+            </nz-space>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #codigoCargando>
+        <div nz-row *nzSpaceItem [nzGutter]="24">
+          <div nz-col nzSpan="12">
+            <nz-space [nzSize]="16" nzDirection="vertical" class="w-100">
+              <!-- ESTABLECIMIENTO -->
+              <nz-space
+                *nzSpaceItem
+                [nzSize]="8"
+                nzDirection="vertical"
+                class="w-100"
+              >
+                <nz-skeleton
+                  *nzSpaceItem
+                  [nzActive]="true"
+                  style="width: 100px"
+                  [nzParagraph]="{ rows: 0 }"
+                >
+                </nz-skeleton>
+              </nz-space>
+              <nz-space
+                *nzSpaceItem
+                nzDirection="vertical"
+                [nzSize]="4"
+                class="modal-card bd-color-primary-1 w-100"
+              >
+                <nz-skeleton
+                  *nzSpaceItem
+                  [nzActive]="true"
+                  style="width: 280px"
+                  [nzParagraph]="{ rows: 0 }"
+                >
+                </nz-skeleton>
+
+                <nz-skeleton
+                  *nzSpaceItem
+                  [nzActive]="true"
+                  style="width: 480px"
+                  [nzParagraph]="{ rows: 0 }"
+                >
+                </nz-skeleton>
+              </nz-space>
+              <nz-space
+                *nzSpaceItem
+                [nzSize]="8"
+                nzDirection="vertical"
+                class="w-100"
+              >
+                <nz-skeleton
+                  *nzSpaceItem
+                  [nzActive]="true"
+                  style="width: 100px"
+                  [nzParagraph]="{ rows: 0 }"
+                >
+                </nz-skeleton>
+                <nz-space
+                  *nzSpaceItem
+                  nzDirection="vertical"
+                  [nzSize]="4"
+                  class="modal-card bd-color-primary-1 w-100"
+                >
+                  <div nz-row *nzSpaceItem nzJustify="space-between">
+                    <div nz-col>
+                      <nz-skeleton
+                        [nzActive]="true"
+                        style="width: 220px"
+                        [nzParagraph]="{ rows: 0 }"
+                      >
+                      </nz-skeleton>
+                    </div>
+                    <div nz-col>
+                      <nz-skeleton
+                        [nzActive]="true"
+                        style="width: 150px"
+                        [nzParagraph]="{ rows: 0 }"
+                      >
+                      </nz-skeleton>
+                    </div>
+                  </div>
+                  <nz-space *nzSpaceItem nzDirection="vertical" class="w-100">
+                    <nz-skeleton
+                      [nzActive]="true"
+                      style="width: 350px"
+                      [nzParagraph]="{ rows: 0 }"
+                    >
+                    </nz-skeleton>
+                    <nz-skeleton
+                      [nzActive]="true"
+                      style="width: 350px"
+                      [nzParagraph]="{ rows: 0 }"
+                    >
+                    </nz-skeleton>
+                  </nz-space>
+                </nz-space>
+              </nz-space>
+            </nz-space>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <nz-space nzDirection="vertical" [nzSize]="8" class="w-100">
+              <nz-skeleton
+                [nzActive]="true"
+                style="width: 100px"
+                [nzParagraph]="{ rows: 0 }"
+              >
+              </nz-skeleton>
+              <nz-space
+                *nzSpaceItem
+                class="w-100 modal-card bd-color-primary-1"
+                [nzSize]="16"
+                nzDirection="vertical"
+              >
+                <nz-space
+                  *nzSpaceItem
+                  class="w-100"
+                  [nzSize]="12"
+                  nzDirection="vertical"
+                >
+                  <div *nzSpaceItem nz-row nzJustify="space-between">
+                    <div nz-col>
+                      <nz-skeleton
+                        [nzActive]="true"
+                        style="width: 250px"
+                        [nzParagraph]="{ rows: 0 }"
+                      >
+                      </nz-skeleton>
+                    </div>
+                    <div nz-col>
+                      <nz-skeleton
+                        [nzActive]="true"
+                        style="width: 150px"
+                        [nzParagraph]="{ rows: 0 }"
+                      >
+                      </nz-skeleton>
+                    </div>
+                  </div>
+                  <nz-space
+                    *nzSpaceItem
+                    class="w-100"
+                    [nzSize]="12"
+                    nzDirection="vertical"
+                  >
+                    <ng-container *nzSpaceItem>
+                      <div
+                        *ngFor="
+                          let servicios of itemDetalles?.pagosInforgestDetalleInterface;
+                          let i = index
+                        "
+                        nz-row
+                        nzJustify="space-between"
+                      >
+                        <div nz-col>
+                          <nz-skeleton
+                            [nzActive]="true"
+                            style="width: 180px"
+                            [nzParagraph]="{ rows: 0 }"
+                          >
+                          </nz-skeleton>
+                        </div>
+
+                        <div nz-col>
+                          <nz-skeleton
+                            [nzActive]="true"
+                            style="width: 80px"
+                            [nzParagraph]="{ rows: 0 }"
+                          >
+                          </nz-skeleton>
+                        </div>
+                        <nz-divider
+                          *ngIf="
+                            i <
+                            itemDetalles?.pagosInforgestDetalleInterface
+                              .length -
+                              1
+                          "
+                        ></nz-divider>
+                      </div>
+                    </ng-container>
+                    <div *nzSpaceItem nz-row>
+                      <nz-divider></nz-divider>
+                    </div>
+                  </nz-space>
+
+                  <div
+                    *nzSpaceItem
+                    nz-row
+                    nzJustify="end"
+                    [nzGutter]="8"
+                    nzAlign="middle"
+                  >
+                    <nz-skeleton
+                      [nzActive]="true"
+                      style="width: 100px"
+                      [nzParagraph]="{ rows: 0 }"
+                    >
+                    </nz-skeleton>
+                  </div>
+                </nz-space>
+                <ng-container *nzSpaceItem>
+                  <nz-space
+                    [nzSize]="4"
+                    nzDirection="vertical"
+                    class="w-100 bg-color-neutral-2"
+                    id="factura-resumen"
+                    *ngIf="itemDetalles?.clienteTipoDocumento === 'RUC'"
+                  >
+                    <nz-skeleton
+                      *nzSpaceItem
+                      [nzActive]="true"
+                      style="width: 180px"
+                      [nzParagraph]="{ rows: 0 }"
+                    >
+                    </nz-skeleton>
+
+                    <nz-skeleton
+                      *nzSpaceItem
+                      [nzActive]="true"
+                      style="width: 100%"
+                      [nzParagraph]="{ rows: 0 }"
+                    >
+                    </nz-skeleton>
+                  </nz-space>
+                </ng-container>
+              </nz-space>
+            </nz-space>
+          </div>
+        </div>
+      </ng-template>
+      <!-- DETAILS CONTENT -->
+    </nz-space>
+  </ng-container>
+</nz-modal>
+
+<!-- MODAL TITLE -->
+
+<ng-template #modalTitle>
+  <ng-container *ngIf="itemDetalles; then codigoCargado; else codigoCargando">
+  </ng-container>
+
+  <ng-template #codigoCargando>
+    <nz-skeleton
+      [nzActive]="true"
+      style="width: 100px"
+      [nzParagraph]="{ rows: 0 }"
+    >
+    </nz-skeleton>
+  </ng-template>
+</ng-template>
+
+<ng-template #codigoCargado>
+  <h5 class="fw-500" nz-typography>Detalle de pago</h5>
+</ng-template>
+
+<!-- MODAL FOOTER -->
+<ng-template #modalFooter>
+  <div nz-row nzJustify="end"></div>
+  <button nz-button (click)="cerrarModal()">
+    <span nz-icon nzType="close" nzTheme="outline"></span>
+    <span>Cancelar</span>
+  </button>
+  <button
+    nz-button
+    nzType="primary"
+    [disabled]="tipoSeleccion === TipoSeleccionType.Ninguno"
+    (click)="onSubmit()"
+  >
+    <span nz-icon nzType="right" nzTheme="outline"></span>
+    <span>Emitir comprobante</span>
+  </button>
+</ng-template>

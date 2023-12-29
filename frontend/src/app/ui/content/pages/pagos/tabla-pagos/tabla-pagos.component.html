@@ -1,0 +1,262 @@
+<nz-space class="w-100" [nzSize]="42" nzDirection="vertical">
+  <nz-space *nzSpaceItem class="w-100" [nzSize]="12" nzDirection="vertical">
+    <div
+      nz-row
+      class="w-100 bg-color-primary-transparent customed-header"
+      *nzSpaceItem
+    >
+      <div nz-col [nzFlex]="columna.nzFlex" *ngFor="let columna of columnas">
+        <div nz-row [nzJustify]="columna.nzAlign">
+          <p nz-typography class="fw-600">{{ columna.nombre }}</p>
+        </div>
+      </div>
+    </div>
+
+    <nz-space *nzSpaceItem nzDirection="vertical" [nzSize]="12" class="w-100">
+      <ng-container
+        *ngIf="
+          paginacionResponse;
+          then mostrarContenidoPagos;
+          else cargandoContenidoPagos
+        "
+      >
+      </ng-container>
+
+      <ng-template #cargandoContenidoPagos>
+        <div
+          class="d-flex justify-center align-item-center"
+          style="padding: 80px"
+        >
+          <nz-spin nzSimple></nz-spin>
+        </div>
+      </ng-template>
+
+      <ng-template #mostrarContenidoPagos>
+        <ng-container
+          *ngIf="
+            paginacionResponse.totalData;
+            then dataCargada;
+            else dataNoCargada
+          "
+        >
+        </ng-container>
+        <ng-template #dataNoCargada>
+          <nz-empty
+            style="padding-top: 48px"
+            nzNotFoundImage="assets/logo/emptyData.svg"
+            [nzNotFoundContent]="contendioEmpty"
+          ></nz-empty>
+          <ng-template #contendioEmpty>
+            <div
+              nz-row
+              [nzGutter]="4"
+              nzJustify="center"
+              style="padding-top: 20px"
+            >
+              <div nz-col>
+                <p nz-typography class="fs-15">No se encontraron</p>
+              </div>
+              <div nz-col>
+                <p nz-typography class="color-primary-6 fs-15">pagos</p>
+              </div>
+            </div>
+          </ng-template>
+        </ng-template>
+        <ng-template #dataCargada>
+          <ng-container *ngFor="let contenido of paginacionResponse?.data">
+            <nz-card class="customed-cards" *nzSpaceItem>
+              <div nz-row nzAlign="middle">
+                <div nz-col nzFlex="104px">
+                  <div nz-row nzJustify="center">
+                    <nz-space nzDirection="vertical">
+                      <span
+                        *nzSpaceItem
+                        nz-icon
+                        [nzType]="
+                          contenido.estadoComprobante === 'PENDIENTE'
+                            ? 'file-exclamation'
+                            : contenido.estadoComprobante === 'ANULADO'
+                            ? 'file-excel'
+                            : contenido.estadoComprobante === 'EMITIDO'
+                            ? 'file-text'
+                            : 'file-exclamation'
+                        "
+                        nzTheme="outline"
+                        [ngClass]="{
+                          'color-danger':
+                            contenido.estadoComprobante === 'ANULADO',
+                          'color-warning':
+                            !contenido.estadoComprobante ||
+                            contenido.estadoComprobante === 'PENDIENTE',
+                          'color-success':
+                            contenido.estadoComprobante === 'EMITIDO'
+                        }"
+                        class="w-100 fs-24"
+                      ></span>
+                      <div *nzSpaceItem class="code-bg bg-color-primary-1">
+                        <p nz-typography>N°{{ contenido.codigoPago }}</p>
+                      </div>
+                    </nz-space>
+                  </div>
+                </div>
+
+                <div nz-col nzFlex="auto" style="padding-left: 88px">
+                  <nz-space nzDirection="vertical">
+                    <div *nzSpaceItem>
+                      <p
+                        nz-typography
+                        class="fw-500 limit-characteres"
+                        style="max-width: 298px"
+                        nz-tooltip
+                        nzTooltipPlacement="top"
+                        nzTooltipTitle="{{
+                          contenido.clienteNombre.length > 37
+                            ? contenido.clienteNombre
+                            : ''
+                        }}"
+                      >
+                        {{ contenido.clienteNombre }}
+                      </p>
+                      <p nz-typography nzType="secondary">
+                        {{ contenido.clienteTipoDocumento }}:
+                        {{ contenido.clienteNumeroDocumento || "_________" }}
+                      </p>
+                    </div>
+                  </nz-space>
+                </div>
+
+                <div nz-col nzFlex="200px">
+                  <div nz-row nzJustify="center">
+                    <nz-space nzDirection="vertical">
+                      <div *nzSpaceItem>
+                        <p nz-typography nzType="secondary">Fecha de pago:</p>
+                        <p nz-typography>
+                          {{ contenido.fechaPago | date : "dd/MM/yyyy" }}
+                        </p>
+                      </div>
+                    </nz-space>
+                  </div>
+                </div>
+
+                <div nz-col nzFlex="200px">
+                  <div nz-row nzJustify="center">
+                    <nz-space nzDirection="vertical">
+                      <div *nzSpaceItem>
+                        <p nz-typography nzType="secondary">
+                          Fecha de comprobante:
+                        </p>
+                        <p nz-typography>
+                          {{
+                            contenido.fechaComprobante
+                              ? (contenido.fechaComprobante
+                                | date : "dd/MM/yyyy")
+                              : "__ /__ /__"
+                          }}
+                        </p>
+                      </div>
+                    </nz-space>
+                  </div>
+                </div>
+
+                <div nz-col nzFlex="200px">
+                  <div nz-row nzJustify="center">
+                    <nz-space nzDirection="vertical">
+                      <nz-tag
+                        nzColor="default"
+                        [ngClass]="{
+                          'color-danger bg-color-danger-8 bd-color-danger-40':
+                            contenido.estadoComprobante === 'ANULADO',
+                          'color-warning bg-color-warning-8 bd-color-warning-40':
+                            !contenido.estadoComprobante ||
+                            contenido.estadoComprobante === 'PENDIENTE',
+                          'color-success bg-color-success-8 bd-color-success-40':
+                            contenido.estadoComprobante === 'EMITIDO'
+                        }"
+                        class="tag-border tag-padding fw-500"
+                        >{{ contenido.estadoComprobante }}</nz-tag
+                      >
+                    </nz-space>
+                  </div>
+                </div>
+
+                <div nz-col nzFlex="320px">
+                  <div nz-row nzJustify="center">
+                    <nz-space [nzSize]="12">
+                      <div *nzSpaceItem nz-col nzFlex="auto">
+                        <button
+                          nz-button
+                          (click)="mostrarModalPagos(contenido.id)"
+                        >
+                          <span nz-icon nzType="eye" nzTheme="outline"></span>
+                          Ver detalle
+                        </button>
+                      </div>
+
+                      <div *nzSpaceItem nz-col nzFlex="auto">
+                        <button
+                          *ngIf="contenido.id"
+                          nz-button
+                          nzType="primary"
+                          (click)="mostrarModalGenerar(contenido.id)"
+                          [disabled]="
+                            contenido.estadoComprobante !== 'PENDIENTE'
+                          "
+                        >
+                          <span nz-icon nzType="file" nzTheme="outline"></span>
+                          Generar comprobante
+                        </button>
+                      </div>
+                    </nz-space>
+                  </div>
+                </div>
+              </div>
+            </nz-card>
+          </ng-container>
+        </ng-template>
+      </ng-template>
+    </nz-space>
+  </nz-space>
+  <ng-container *ngIf="paginacionResponse">
+    <div nz-row nzJustify="center" *nzSpaceItem>
+      <ng-container *ngTemplateOutlet="paginacion"></ng-container>
+    </div>
+  </ng-container>
+</nz-space>
+
+<!-- PAGINACIÓN -->
+<ng-template #paginacion>
+  <nz-pagination
+    [nzPageIndex]="paginacionResponse.page"
+    [nzTotal]="paginacionResponse.totalData"
+    [nzShowTotal]="total"
+    [nzPageSize]="paginacionResponse.itemsPerPage"
+    nzShowSizeChanger
+    (nzPageIndexChange)="nzPageIndexChange($event)"
+    (nzPageSizeChange)="nzPageSizeChange($event)"
+    class="text-center"
+  >
+  </nz-pagination>
+
+  <ng-template #total let-range="range" let-total>
+    <span nz-typography
+      >{{ range[0] }}-{{ range[1] }} de
+      {{ paginacionResponse.totalData }} pago(s)</span
+    >
+  </ng-template>
+
+  <!-- MODAL VER DETALLE -->
+
+  <modal-ver
+    [isModalVisible]="mostrarModalP"
+    [cerrarModal]="cerrarModalPagos"
+    [idDetalle]="recepcionarID"
+  >
+  </modal-ver>
+
+  <modal-generar
+    [isModalVisible]="mostrarModalGp"
+    [cerrarModal]="cerrarModalGenerar"
+    [idDetalle]="recepcionarID"
+  >
+  </modal-generar>
+</ng-template>

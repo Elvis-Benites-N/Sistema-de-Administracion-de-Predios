@@ -1,0 +1,21 @@
+<nz-space nzDirection="vertical" [nzSize]="24" class="w-100">
+  <h2 nz-typography *nzSpaceItem>Pagos sin comprobantes</h2>
+  <!-- FILTROS -->
+  <filtros-pagos
+    *nzSpaceItem
+    (filtroItems)="cargarData()"
+    [formulario]="formulario"
+  ></filtros-pagos>
+
+  <!-- TABLA -->
+  <safety-call (retry)="cargarData()" *nzSpaceItem>
+    <tabla-pagos
+      #customedTable
+      [paginacionResponse]="paginacionResponse"
+      (cambiarPagina)="cambiarPagina($event)"
+      (cambiarTamanio)="cambiarTamanio($event)"
+      [refrescarData]="refrescarData"
+    >
+    </tabla-pagos>
+  </safety-call>
+</nz-space>

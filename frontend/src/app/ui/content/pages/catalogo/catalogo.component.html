@@ -1,0 +1,19 @@
+<nz-space nzDirection="vertical" [nzSize]="24" class="w-100">
+  <h2 nz-typography *nzSpaceItem>Catálogo de equivalencias</h2>
+  <!-- FILTROS -->
+  <app-filtros-catalogo
+    *nzSpaceItem
+    (filtroItems)="cargarData()"
+    [formulario]="formulario"
+  ></app-filtros-catalogo>
+
+  <!-- TABLA -->
+  <safety-call (retry)="cargarData()" *nzSpaceItem>
+    <tabla-catalogo
+      #customedTable
+      [paginacionResponse]="paginacionResponse"
+      (cambiarPagina)="cambiarPagina($event)"
+      (cambiarTamanio)="cambiarTamanio($event)"
+    ></tabla-catalogo>
+  </safety-call>
+</nz-space>

@@ -1,0 +1,30 @@
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="null"
+  (nzOnCancel)="cerrarModal()"
+  nzCentered="true"
+  [nzWidth]="680"
+>
+  <ng-container *nzModalContent>
+    <ngx-extended-pdf-viewer
+      [src]="archivo"
+      [showPrintButton]="false"
+      [showDownloadButton]="false"
+      [showRotateButton]="false"
+      [showSecondaryToolbarButton]="false"
+      [showOpenFileButton]="false"
+      [showZoomButtons]="true"
+      [zoom]="'auto'"
+      width="240px"
+      height="95%"
+    >
+    </ngx-extended-pdf-viewer>
+  </ng-container>
+</nz-modal>
+
+<!-- MODAL TITLE -->
+
+<ng-template #modalTitle>
+  <h5 class="fw-500" nz-typography>Comprobante de pago</h5>
+</ng-template>

@@ -1,0 +1,63 @@
+<nz-modal
+  [(nzVisible)]="isModalMailVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="null"
+  (nzOnCancel)="closeMailModal()"
+  nzCentered="true"
+>
+  <ng-container *nzModalContent>
+    <div class="d-flex flex-column align-item-center w-100" style="gap: 40px">
+      <div
+        class="d-flex flex-column gap-12 text-center w-100 align-item-center"
+      >
+        <h3 nz-typography>Boletas y Facturas emitidas</h3>
+        <p nz-typography style="width: 365px">
+          Ingresa el correo receptor de los comprobantes de pago en formato .pdf
+        </p>
+      </div>
+
+      <div class="d-flex flex-column gap-24 align-item-center w-100">
+        <nz-input-group
+          style="padding: 12px 16px"
+          [nzSuffix]="suffixTemplateInfo"
+          [nzPrefix]="prefixTemplateUser"
+        >
+          <input
+            type="text"
+            nz-input
+            style="padding: 0 8px"
+            placeholder="Ingresa un correo electrónico"
+            nzSize="large"
+            style="font-size: 16px"
+          />
+        </nz-input-group>
+
+        <ng-template #prefixTemplateUser
+          ><span
+            nz-icon
+            nzType="mail"
+            nzTheme="outline"
+            class="color-secondary"
+          ></span
+        ></ng-template>
+        <ng-template #suffixTemplateInfo>
+          <span
+            nz-icon
+            nz-tooltip
+            nzTooltipTitle="Verifica que el correo esté correcto"
+            nzType="info-circle"
+            class="color-secondary"
+          ></span>
+        </ng-template>
+
+        <button nz-button nzType="primary" class="w-100" nzSize="large">
+          Enviar correo
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>
+
+<ng-template #modalTitle>
+  <p nz-typography>Envío de comprobantes de pago</p>
+</ng-template>

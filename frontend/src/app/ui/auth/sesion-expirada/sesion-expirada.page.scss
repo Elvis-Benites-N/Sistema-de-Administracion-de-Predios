@@ -1,0 +1,41 @@
+.sesion-container {
+  position: relative;
+}
+
+.header-container {
+  background-color: var(--color-primary-3);
+  height: 50%;
+  z-index: 10;
+}
+
+.body-container {
+  position: absolute;
+  bottom: 0;
+  z-index: 20;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 24px;
+  gap: 12px;
+}
+
+.imagen-container {
+  width: 50vw;
+  height: 25vw;
+  background-color: #ededff;
+  border-radius: 50vw 50vw 0 0;
+  position: relative;
+  img {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    width: 20vw;
+    height: 20vw;
+    margin: auto;
+  }
+}
+
+.informacion-container {
+  height: 50%;
+  background-color: var(--neutral-lightest-color);
+}

@@ -1,0 +1,41 @@
+<!-- FILTROS -->
+<form [formGroup]="formulario">
+  <div nz-row [nzGutter]="[48, 12]">
+    <div nz-col nzFlex="auto">
+      <!-- INPUT BUSCAR -->
+
+      <input
+        type="text"
+        nz-input
+        placeholder="Nombre de item del catálogo del SIR"
+        formControlName="palabraClave"
+        debounce
+        [timeDebounce]="800"
+        (onDebounce)="buscar()"
+      />
+    </div>
+
+    <!-- LIMPIAR -->
+
+    <div nz-col nzFlex="auto">
+      <div nz-row nzJustify="end">
+        <button
+          nz-button
+          nzType="primary"
+          class="d-flex align-item-center justify-center"
+          (click)="mostrarModalCrearRelacion()"
+        >
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+          Añadir item
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<modal-crear
+  [isModalVisible]="mostrarModalCrear"
+  [cerrarModal]="cerrarModalCrearRelacion"
+  [idEquivalencia]="idEquivalencia"
+>
+</modal-crear>

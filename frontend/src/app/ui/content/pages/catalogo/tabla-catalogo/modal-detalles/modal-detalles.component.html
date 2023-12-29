@@ -1,0 +1,119 @@
+<nz-modal
+  [(nzVisible)]="isModalDetailsVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="null"
+  (nzOnCancel)="closeDetailsModal()"
+  nzCentered="true"
+>
+  <ng-container *nzModalContent>
+    <div class="d-flex flex-column align-items-center w-100 gap-24">
+      <div
+        class="d-flex flex-column align-items-center w-100 gap-12 modal-card bd-color-primary-1"
+      >
+        <div nz-row [nzGutter]="8" nzAlign="middle" nzJustify="center">
+          <div nz-col>
+            <span
+              class="color-primary-6"
+              nz-icon
+              nzType="apartment"
+              nzTheme="outline"
+            ></span>
+          </div>
+          <div nz-col>
+            <h5 nz-typography class="color-primary-8">
+              {{ itemDetalles?.itemSir.categoriaNombre }}
+            </h5>
+          </div>
+          <div nz-col>
+            <nz-tag
+              nzColor="default"
+              class="tag-padding fw-12 color-character-primary-85 bg-color-white-1"
+            >
+              {{ itemDetalles?.fechaInicio | dateFormat }} -
+              {{
+                !itemDetalles?.fechaExpiracion
+                  ? "__/__/__"
+                  : (itemDetalles?.fechaExpiracion | dateFormat)
+              }}</nz-tag
+            >
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="40" nzAlign="middle" nzJustify="center">
+          <div nz-col>
+            <div class="d-flex flex-column text-center w-100">
+              <p nz-typography nzType="secondary" class="fs-12">Catálogo SIR</p>
+              <p nz-typography>{{ itemDetalles?.itemSir.itemNombre }}</p>
+            </div>
+          </div>
+          <div nz-col>
+            <span
+              nz-icon
+              nzType="swap"
+              nzTheme="outline"
+              class="justify-center d-flex"
+            ></span>
+          </div>
+          <div nz-col>
+            <div class="d-flex flex-column text-center w-100">
+              <p nz-typography nzType="secondary" class="fs-12">
+                item Inforgest
+              </p>
+              <p nz-typography>{{ itemDetalles?.itemSir.itemNombre }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8" nzAlign="middle">
+        <div nz-col>
+          <p nz-typography>Estado del equivalencia:</p>
+        </div>
+        <div nz-col>
+          <nz-tag
+            nzColor="default"
+            [ngClass]="{
+              'color-warning bg-color-warning-8 bd-color-warning-40':
+                !itemDetalles?.tieneComprobantes,
+              'color-success bg-color-success-8 bd-color-success-40':
+                itemDetalles?.tieneComprobantes
+            }"
+            class="tag-border tag-padding fw-500"
+            >{{
+              itemDetalles?.tieneComprobantes === false
+                ? "NO PROCESADO"
+                : "PROCESADO"
+            }}</nz-tag
+          >
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>
+
+<ng-template #modalTitle>
+  <div nz-row [nzGutter]="4" class="w-100" nzAlign="middle">
+    <ng-container
+      *ngIf="!itemDetalles; then cargandoCodigo; else codigoCargado"
+    >
+    </ng-container>
+
+    <ng-template #codigoCargado>
+      <div nz-col>
+        <h5 class="fw-500" nz-typography>Detalles de equivalencia</h5>
+      </div>
+      <div nz-col>
+        <h5 class="color-primary-6 fw-500" nz-typography>
+          {{ itemDetalles?.id | idFormat }}
+        </h5>
+      </div>
+    </ng-template>
+
+    <ng-template #cargandoCodigo>
+      <nz-skeleton
+        [nzActive]="true"
+        style="width: 100px"
+        [nzParagraph]="{ rows: 0 }"
+      ></nz-skeleton>
+    </ng-template>
+  </div>
+</ng-template>

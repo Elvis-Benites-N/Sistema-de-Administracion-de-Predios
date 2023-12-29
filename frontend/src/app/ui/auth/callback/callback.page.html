@@ -1,0 +1,5 @@
+<p *ngIf="!error">Espere un momento...</p>
+<ng-container *ngIf="error">
+  <p>Ocurrio un error...</p>
+  <a routerLink="/">Regresar</a>
+</ng-container>

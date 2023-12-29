@@ -1,0 +1,162 @@
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="cerrarModal()"
+  nzCentered="true"
+  [nzWidth]="680"
+>
+  <ng-container *nzModalContent>
+    <form [formGroup]="formWrapper.formulario">
+      <nz-space [nzSize]="12" nzDirection="vertical" class="w-100">
+        <!-- Item inforgest -->
+        <nz-space
+          *nzSpaceItem
+          [nzSize]="4"
+          nzDirection="vertical"
+          class="w-100"
+        >
+          <p *nzSpaceItem nz-typography class="color-primary-4">
+            Nombre del ítem del Inforgest (*)
+          </p>
+          <nz-select
+            *nzSpaceItem
+            nzPlaceHolder="Seleccionar item de INFORGEST"
+            formControlName="idItemInforgest"
+            class="w-100"
+          >
+            <nz-option
+              *ngFor="let inforgest of data.inforgestItems"
+              [nzLabel]="inforgest.nombre"
+              [nzValue]="inforgest.id"
+            >
+            </nz-option>
+          </nz-select>
+        </nz-space>
+
+        <!-- icono -->
+        <span
+          *nzSpaceItem
+          nz-icon
+          nzType="swap"
+          nzTheme="outline"
+          class="justify-center d-flex"
+        ></span>
+
+        <!-- Item SIR -->
+        <nz-space
+          *nzSpaceItem
+          [nzSize]="4"
+          nzDirection="vertical"
+          class="w-100"
+        >
+          <p *nzSpaceItem class="color-primary-4">
+            Ítem correlacionado del facturador (*)
+          </p>
+          <nz-space
+            [nzSize]="20"
+            nzDirection="vertical"
+            *nzSpaceItem
+            class="w-100"
+          >
+            <nz-select
+              *nzSpaceItem
+              nzPlaceHolder="Seleccionar item del facturador"
+              class="w-100"
+              formControlName="idItemSir"
+            >
+              <nz-option
+                *ngFor="let sir of data.sirItems"
+                [nzLabel]="sir.nombre"
+                [nzValue]="sir.id"
+              ></nz-option>
+            </nz-select>
+
+            <div
+              nz-row
+              *nzSpaceItem
+              class="bg-color-blue-1"
+              style="padding: 8px; border-radius: 8px"
+            >
+              <div nz-col nzSpan="8">
+                <p nz-typography nzType="secondary" class="text-center">
+                  Categoría
+                </p>
+                <p class="text-center">
+                  {{ detallesSIR?.categoriaNombre || "---" }}
+                </p>
+              </div>
+              <div nz-col nzSpan="8">
+                <p nz-typography nzType="secondary" class="text-center">
+                  Tipo de ítem
+                </p>
+                <p class="text-center">
+                  {{ detallesSIR?.tipoItemDescripcion || "---" }}
+                </p>
+              </div>
+              <div nz-col nzSpan="8">
+                <p nz-typography nzType="secondary" class="text-center">
+                  Tipo IGV
+                </p>
+                <p class="text-center">
+                  {{ detallesSIR?.tipoAfectacionDescripcion || "---" }}
+                </p>
+              </div>
+            </div>
+          </nz-space>
+        </nz-space>
+        <!-- FECHAS -->
+        <nz-space
+          *nzSpaceItem
+          [nzSize]="4"
+          nzDirection="vertical"
+          class="w-100"
+        >
+          <p *nzSpaceItem nz-typography class="color-primary-4">
+            Fecha de expiración
+          </p>
+          <nz-range-picker
+            *nzSpaceItem
+            nzFormat="dd/MM/yyyy"
+            formControlName="fechas"
+            [nzDisabledDate]="disabledDate"
+          >
+          </nz-range-picker>
+        </nz-space>
+      </nz-space>
+    </form>
+  </ng-container>
+</nz-modal>
+
+<!-- MODAL TITLE -->
+
+<ng-template #modalTitle>
+  <h5 class="fw-500" nz-typography>Agregar nuevo item</h5>
+</ng-template>
+
+<!-- MODAL FOOTER -->
+<ng-template #modalFooter>
+  <div nz-row [nzGutter]="8" nzJustify="center">
+    <div nz-col>
+      <button nz-button nzBlock (click)="cerrarModal()">
+        <span nz-icon nzType="close" nzTheme="outline"></span>
+        Cancelar
+      </button>
+    </div>
+    <div nz-col>
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        [disabled]="
+          formWrapper.formulario.getRawValue().idItemInforgest === null ||
+          formWrapper.formulario.getRawValue().idItemSir === null
+        "
+        (click)="onSubmit()"
+      >
+        <span nz-icon nzType="check" nzTheme="outline"></span>
+        Registrar nuevo ítem
+      </button>
+    </div>
+  </div>
+</ng-template>

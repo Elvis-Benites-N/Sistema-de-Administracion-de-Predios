@@ -1,0 +1,59 @@
+<!-- FILTROS -->
+<form [formGroup]="formulario">
+  <div nz-row [nzGutter]="[48, 12]">
+    <div nz-col nzFlex="auto">
+      <!-- INPUT BUSCAR -->
+
+      <input
+        type="text"
+        nz-input
+        placeholder="Código de Pago / Información del cliente"
+        formControlName="palabraClave"
+        debounce
+        [timeDebounce]="800"
+        (onDebounce)="buscar()"
+      />
+    </div>
+
+    <!-- DATE PICKER -->
+    <div nz-col>
+      <nz-range-picker formControlName="fechas" nzFormat="dd/MM/yyyy">
+      </nz-range-picker>
+    </div>
+
+    <!-- GRUPO DE BOTONES -->
+    <!-- <div nz-col nzFlex="auto">
+      <div nz-row [nzGutter]="[8, 0]" nzAlign="middle"> -->
+    <!-- TODOS -->
+    <!-- <div nz-col nzFlex="auto">
+          <button nz-button nzType="primary" class="w-100">TODOS</button>
+        </div> -->
+
+    <!-- PENDIENTE -->
+    <!-- <div nz-col nzFlex="auto">
+          <button nz-button class="w-100">PENDIENTE</button>
+        </div> -->
+
+    <!-- EMITIDO -->
+    <!-- <div nz-col nzFlex="auto">
+          <button nz-button class="w-100">EMITIDO</button>
+        </div> -->
+
+    <!-- ANULADO -->
+    <!-- <div nz-col nzFlex="auto">
+          <button nz-button class="w-100">ANULADO</button>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- LIMPIAR -->
+    <div nz-col nzFlex="auto">
+      <div nz-row nzJustify="end">
+        <button nz-button nzType="text" (click)="resetearFiltros()">
+          <span nz-icon nzType="clear" nzTheme="outline"></span>
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,52 @@
+<!-- FILTROS -->
+<form [formGroup]="formulario">
+  <div nz-row [nzGutter]="48">
+    <div nz-col nzFlex="auto">
+      <!-- INPUT BUSCAR -->
+      <nz-input-group nzCompact nzSearch [nzAddOnBefore]="inputSelect">
+        <input
+          type="text"
+          nz-input
+          placeholder="Complete la información requerida"
+          formControlName="palabraClave"
+          debounce
+          [timeDebounce]="800"
+          (onDebounce)="buscar()"
+        />
+        <ng-template #inputSelect>
+          <nz-select style="min-width: 200px" formControlName="tipoBusqueda">
+            <nz-option
+              [nzLabel]="'Informacion del cliente'"
+              [nzValue]="tipoBusquedaType.cliente"
+            ></nz-option>
+            <nz-option
+              [nzLabel]="'Número de comprobante'"
+              [nzValue]="tipoBusquedaType.numero"
+            ></nz-option>
+          </nz-select>
+        </ng-template>
+      </nz-input-group>
+    </div>
+
+    <!-- DATE PICKER -->
+    <div nz-col>
+      <nz-range-picker formControlName="fechas" nzFormat="dd/MM/yyyy">
+      </nz-range-picker>
+    </div>
+
+    <!-- LIMPIAR -->
+    <div nz-col nzFlex="auto">
+      <div nz-row nzJustify="end">
+        <button
+          nz-button
+          nzType="text"
+          class="d-flex align-item-center justify-center"
+          (click)="resetearFiltros()"
+        >
+          <span nz-icon nzType="clear" nzTheme="outline"></span>
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

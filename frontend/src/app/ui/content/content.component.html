@@ -1,0 +1,150 @@
+<div id="container" class="w-100 h-100 bg-color-primary-1">
+  <nz-layout class="h-100 bg-color-primary-1">
+    <!-- SIDEBAR -->
+    <nz-sider nzWidth="300px" [nzCollapsedWidth]="100">
+      <div
+        id="sidebar-div"
+        class="d-flex flex-column align-item-center h-100 w-100"
+      >
+        <!-- LOGO PREDIOS -->
+        <nz-space nzDirection="vertical" [nzSize]="48" class="w-100">
+          <div *nzSpaceItem class="d-flex justify-center">
+            <img src="assets/logo/logo-predios.svg" />
+          </div>
+
+          <!-- BOTÓN -->
+          <button
+            *nzSpaceItem
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            routerLink="/"
+            nzBlock
+          >
+            <span nz-icon nzType="home" nzTheme="outline"></span>
+            Inicio
+          </button>
+        </nz-space>
+
+        <!-- MENÚ -->
+        <ul nz-menu nzMode="vertical" class="w-100">
+          <li
+            *accesoAlgunModulo="[ModulosType.PAGOS.id]"
+            nzMatchRouter
+            nz-menu-item
+            nz-tooltip
+            nzTooltipPlacement="right"
+            (click)="setSelectedSection('')"
+          >
+            <a routerLink="/pagos">
+              <span nz-icon nzType="shop"></span>
+              <span>Pagos</span>
+            </a>
+          </li>
+          <li
+            *accesoAlgunModulo="[ModulosType.COMPROBANTES.id]"
+            nzMatchRouter
+            nz-menu-item
+            nz-tooltip
+            nzTooltipPlacement="right"
+            (click)="setSelectedSection('')"
+          >
+            <a routerLink="/comprobantes">
+              <span nz-icon nzType="audit"></span>
+              <span>Comprobantes</span>
+            </a>
+          </li>
+          <li
+            *accesoAlgunModulo="[ModulosType.CATALOGO.id]"
+            nzMatchRouter
+            nz-menu-item
+            nz-tooltip
+            nzTooltipPlacement="right"
+            (click)="setSelectedSection('')"
+          >
+            <a routerLink="/catalogo">
+              <span nz-icon nzType="shopping"></span>
+              <span>Catálogo</span>
+            </a>
+          </li>
+
+          <li
+            nz-submenu
+            nzTitle="Indicadores"
+            nzIcon="line-chart"
+            [ngClass]="{
+              'bg-color-primary-1 selectedMenu':
+                selectedSection === 'cuentas' ||
+                selectedSection === 'contratos',
+              'color-secondary': !(
+                selectedSection === 'cuentas' || selectedSection === 'contratos'
+              )
+            }"
+          >
+            <ul>
+              <li
+                nz-menu-item
+                nzMatchRouter
+                (click)="setSelectedSection('cuentas')"
+              >
+                <a routerLink="/indicadores/cuentas">Cuentas</a>
+              </li>
+              <li
+                nz-menu-item
+                nzMatchRouter
+                (click)="setSelectedSection('contratos')"
+              >
+                <a routerLink="/indicadores/contratos">Contratos</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- IMAGEN -->
+        <div class="d-flex flex-column">
+          <img
+            src="assets/images/sidebar-img.svg"
+            height="220"
+            style="margin-bottom: -36px; z-index: 0"
+          />
+          <div class="card-img bg-color-primary-1">
+            <h5 nz-typography>
+              Recuerda revisar el estado de tus pagos generados
+            </h5>
+          </div>
+        </div>
+
+        <!-- BOTÓN CERRAR SESIÓN -->
+        <div class="d-flex w-100 flex-column" style="gap: 4px">
+          <button
+            nzBlock
+            nz-button
+            nzSize="large"
+            nzType="primary"
+            nzGhost
+            (click)="cerrarSesion()"
+          >
+            <span nz-icon nzType="logout"></span>
+            <span>Cerrar sesión</span>
+          </button>
+
+          <small style="margin: auto" class="fw-600 color-secondary">{{
+            version
+          }}</small>
+        </div>
+      </div>
+    </nz-sider>
+
+    <!-- MAIN CONTENT -->
+    <nz-layout style="background-color: transparent">
+      <div id="content-container" class="h-100">
+        <nz-content>
+          <div #bodyContainer id="content" class="h-100 d-flex flex-column">
+            <titulo></titulo>
+            <router-outlet></router-outlet>
+          </div>
+        </nz-content>
+      </div>
+    </nz-layout>
+  </nz-layout>
+</div>

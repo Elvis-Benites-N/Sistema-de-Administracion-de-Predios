@@ -1,0 +1,20 @@
+<nz-space nzDirection="vertical" [nzSize]="24" class="w-100">
+  <h2 nz-typography *nzSpaceItem>Comprobantes Emitidos</h2>
+  <!-- FILTROS -->
+  <filtros-comprobantes
+    *nzSpaceItem
+    (filtroItems)="cargarData()"
+    [formulario]="formulario"
+  ></filtros-comprobantes>
+
+  <!-- TABLA -->
+  <safety-call (retry)="cargarData()" *nzSpaceItem>
+    <tabla-comprobantes
+      #customedTable
+      [paginacionResponse]="paginacionResponse"
+      (cambiarPagina)="cambiarPagina($event)"
+      (cambiarTamanio)="cambiarTamanio($event)"
+    >
+    </tabla-comprobantes>
+  </safety-call>
+</nz-space>

@@ -1,0 +1,61 @@
+nz-sider {
+  background: var(--color-neutral-1);
+  border-radius: 8px;
+  box-shadow: 0px 4px 24px 0px rgba(15, 11, 37, 0.12);
+  border-right: 2px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin: 24px 0 24px 24px;
+}
+
+nz-layout {
+  gap: 36px;
+  overflow-y: auto;
+}
+
+#sidebar-div {
+  padding: 48px 24px;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.card-img {
+  padding: 24px 36px;
+  border-radius: 24px;
+  h5 {
+    font-weight: 400;
+  }
+}
+
+#close-sesion {
+  color: #4939bb;
+  border: 1px solid var(--primary-6, #4939bb);
+  padding: 6.4px 15px;
+}
+
+#content-container {
+  padding: 24px 0px 24px 0;
+  // min-width: 1532px;
+  min-width: 1560px;
+
+  // min-height: 00px;nzJustify
+}
+
+#content {
+  gap: 20px;
+  padding: 0px 24px 24px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.selectedMenu {
+  border-radius: 8px;
+  padding: 0 !important;
+}
+
+:host::ng-deep.ant-menu-submenu-title {
+  border-radius: 8px;
+}
+
+.ant-menu-item a::before {
+  border-radius: 8px;
+}

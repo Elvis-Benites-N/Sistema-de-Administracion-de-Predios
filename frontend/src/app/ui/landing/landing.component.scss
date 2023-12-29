@@ -1,0 +1,99 @@
+.landing-button {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 16px 36px;
+  color: white;
+  gap: 10px;
+  z-index: 10;
+}
+
+.gap-60 {
+  gap: 60px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-48 {
+  gap: 48px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.fs-60 {
+  font-size: 60px;
+}
+
+.fs-40 {
+  font-size: 40px;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.social-style {
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #edebf8;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  z-index: 100;
+}
+
+.loggin-button {
+  border-radius: 8px;
+  border: 1px solid #4939bb;
+  padding: 6.4px 15px;
+}
+
+@keyframes float {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 5%;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.cloud-sgp {
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+  left: 180px;
+}
+
+@keyframes moveRight {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    left: 90%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.bird1 {
+  position: absolute;
+  top: 390px;
+  animation: moveRight 9s linear infinite;
+}
+
+.bird2 {
+  position: absolute;
+  top: 480px;
+  animation: moveLeft 18s linear infinite;
+}

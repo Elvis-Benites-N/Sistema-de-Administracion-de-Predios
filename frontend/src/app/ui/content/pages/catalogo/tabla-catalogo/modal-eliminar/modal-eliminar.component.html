@@ -1,0 +1,63 @@
+<nz-modal
+  [(nzVisible)]="isModalVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="cerrarModal()"
+  nzCentered="true"
+  [nzWidth]="607"
+>
+  <ng-container *nzModalContent>
+    <div nz-row [nzGutter]="24" nzJustify="center" nzAlign="middle">
+      <div nz-col>
+        <nz-space [nzSize]="4" nzDirection="vertical">
+          <p nz-typography class="color-primary-8 text-center" *nzSpaceItem>
+            INFORGEST
+          </p>
+          <p nz-typography *nzSpaceItem class="text-center">
+            {{ itemDetalles?.itemInforgest.nombre }}
+          </p>
+        </nz-space>
+      </div>
+      <div nz-col><span nz-icon nzType="swap" nzTheme="outline"></span></div>
+      <div nz-col>
+        <nz-space [nzSize]="4" nzDirection="vertical">
+          <p nz-typography class="color-primary-8 text-center" *nzSpaceItem>
+            CATÁLOGO SIR
+          </p>
+          <p nz-typography *nzSpaceItem class="text-center">
+            {{ itemDetalles?.itemSir.itemNombre }}
+          </p>
+        </nz-space>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>
+<ng-template #modalTitle>
+  <h5 class="fw-500" nz-typography>
+    ¿Esta seguro de eliminar la relación entre los siguientes items?
+  </h5>
+</ng-template>
+
+<!-- MODAL FOOTER -->
+<ng-template #modalFooter>
+  <div nz-row [nzGutter]="8" nzJustify="center">
+    <div nz-col>
+      <button nz-button nzType="default" (click)="cerrarModal()">
+        <span nz-icon nzType="close" nzTheme="outline"></span>
+        Cancelar
+      </button>
+    </div>
+    <div nz-col>
+      <button
+        nz-button
+        nzType="primary"
+        nzDanger
+        [disabled]="isEmitted"
+        (click)="eliminarEquivalenciaPorCompletoValidado()"
+      >
+        <span nz-icon nzType="check" nzTheme="outline"></span>
+        Sí, eliminar
+      </button>
+    </div>
+  </div>
+</ng-template>
